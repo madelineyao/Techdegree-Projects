@@ -5,12 +5,16 @@
 //add a text field for the 'Other' option in 'Job Role' and hide the input for the 'Other' option
 const other_job_input = document.querySelector('.is-hidden'); 
 const options = document.getElementById('title'); 
-options.childNodes.addEventListener('click',(e)=>{
+const input = document.getElementById('other-title');
+options.addEventListener('click',(e)=>{
     //if(e.target.tagName==='option'){
-        if(e.target.textContent ==='Other'){
-            other_job_input.className = 'show'; 
+      if(e.target.parentNode.name==='user_title'){
+        if(e.target.value ==='other'){
+            input.style.display = 'block';
+        } else {
+            input.style.display = 'none';
         }  
-    
+      }
 }); 
 
 
@@ -19,7 +23,7 @@ const theme_selection = document.getElementById('design');
 const color_menu = document.getElementById('color'); 
 
 theme_selection.addEventListener('click', (e)=>{
-    const colors = color_menu.children;
+    const colors = color_menu.childNodes;
     if(e.target.tagName==='option'){
         if(e.target.textContent === 'Theme - JS Puns'){
         for(let i = 0; i < colors.length; i += 1){
