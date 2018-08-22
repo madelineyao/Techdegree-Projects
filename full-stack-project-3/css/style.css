@@ -148,6 +148,9 @@ button:hover {
   display: table;
   clear: both;
 }
+.show {
+    display:block; 
+}
 
 /* ================================= 
   Media Queries

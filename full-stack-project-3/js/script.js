@@ -3,9 +3,16 @@
 //first_textfield.focus(); 
 
 //add a text field for the 'Other' option in 'Job Role' and hide the input for the 'Other' option
-const other_job_input = document.querySelector('.other-job-section'); 
+const other_job_input = document.querySelector('.is-hidden'); 
 const options = document.getElementById('title'); 
-other_job_input.style.display= ''; 
+options.childNodes.addEventListener('click',(e)=>{
+    //if(e.target.tagName==='option'){
+        if(e.target.textContent ==='Other'){
+            other_job_input.className = 'show'; 
+        }  
+    
+}); 
+
 
 //color selection based on the theme
 const theme_selection = document.getElementById('design'); 
