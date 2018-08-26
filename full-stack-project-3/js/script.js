@@ -6,15 +6,16 @@
 const other_job_input = document.querySelector('.is-hidden'); 
 const options = document.getElementById('title'); 
 const input = document.getElementById('other-title');
+input.style.display = 'none'; 
 options.addEventListener('click',(e)=>{
     //if(e.target.tagName==='option'){
-      if(e.target.parentNode.name==='user_title'){
+      
         if(e.target.value ==='other'){
             input.style.display = 'block';
         } else {
             input.style.display = 'none';
         }  
-      }
+      
 }); 
 
 
@@ -23,23 +24,20 @@ const theme_selection = document.getElementById('design');
 const color_menu = document.getElementById('color'); 
 
 theme_selection.addEventListener('click', (e)=>{
-    const colors = color_menu.childNodes;
-    if(e.target.tagName==='option'){
-        if(e.target.textContent === 'Theme - JS Puns'){
-        for(let i = 0; i < colors.length; i += 1){
-             if(colors.indexOf(colors[i])=== 3|4|5){
-                 colors.removeChild(colors[i]); 
-             }
-        }
+    
+   // color_menu.style.display = 'none'; 
+    if(e.target.textContent === 'Theme - JS Puns'){
+        color_menu.innerHTML = '<select id="color"><option value="cornflowerblue">Cornflower Blue (JS Puns shirt only)</option>'+
+            '<option value="darkslategrey">Dark Slate Grey (JS Puns shirt only)</option>'+ 
+            '<option value="gold">Gold (JS Puns shirt only)</option></select>'; 
+        color_menu.style.display = 'block'; 
     } else if(e.target.textContent === 'Theme - I &#9829; JS'){
-        for(let i = 0; i< colors.length; i+=1){
-            let color = colors[i]; 
-            if(color.textContent === 'Cornflower Blue (JS Puns shirt only)'||'Dark Slate Grey (JS Puns shirt only)'||'Gold (JS Puns shirt only)'){
-                colors.removeChild(colors[i]);
-            }
-        }
+        color_menu.innerHTML = '<select id="color"><option value="tomato">Tomato (I &#9829; JS shirt only)</option>'+
+            '<option value="steelblue">Steel Blue (I &#9829; JS shirt only)</option>'+ 
+            '<option value="dimgrey">Dim Grey (I &#9829; JS shirt only)</option></select>'; 
+        color_menu.style.display = 'block'; 
     }
-    }
+    
 }); 
 
 
