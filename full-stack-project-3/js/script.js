@@ -40,6 +40,23 @@ theme_selection.addEventListener('click', (e)=>{
     
 }); 
 
+//Steps for the event checkup: 
+//    Preparation: create some html that shows the cost and hide it
+//    1. create a collection of those events (value, time, cost) 2. add Event Listener for checkup 3. check one event and find the value and the //object and the time and the cost   4. loop through the collection and find the event that has conflicting schedules 5. disable the checkbox for //those conflicting events 5. show the total cost of the checked up events 
+const total = document.createElement('div'); 
+total.className = 'total'; 
+const p = document.createElement('p');
+p.textContent = 'Total: '; 
+total.appendChild(p); 
+const container = document.querySelector('.container'); 
+const fieldset_events = container.querySelectorAll('fieldset')[2]; 
+fieldset_events.appendChild(total); 
+total.style.display = 'none'; 
+
+
+
+
+
 
 //event selection: if there is one event checked that conflicted with another, disable the latter event checkbox
 const event_selection = document.getElementsByClassName('activities')[0]; 
