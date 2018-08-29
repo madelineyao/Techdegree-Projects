@@ -50,12 +50,95 @@ p.textContent = 'Total: ';
 total.appendChild(p); 
 const container = document.querySelector('.container'); 
 const fieldset_events = container.querySelectorAll('fieldset')[2]; 
+const checkboxes = fieldset_events.querySelectorAll('label'); 
 fieldset_events.appendChild(total); 
 total.style.display = 'none'; 
 
+const event_collection = [
+    {name: "all", cost:"$200", time:"none"}, 
+    {name: "js-frameworks", cost:"$100" , time: "Tuesday 9am-12pm"}, 
+    {name: "js-libs", cost: "$100", time: "Tuesday 1pm-4pm"}, 
+    {name: "express", cost: "$100" , time: "Tuesday 9am-12pm"}, 
+    {name: "node", cost: "$100" , time: "Tuesday 1pm-4pm"}, 
+    {name: "build-tools", cost: "$100" , time:"Wednesday 9am-12pm" }, 
+    {name: "npm", cost: "$100", time:"Wednesday 1pm-4pm" }
+]; 
+
+fieldset_events.addEventListener('change', (e) =>{
+    //you target the place with the event selection 
+    //click the checkbox 
+    //find the checkbox's name 
+    //get the whole event's information from event_collection especially the time by that name 
+    //loop through the event collection to find the conflicting event(s) due to the same time 
+    //disable the checkbox and let the event in webpage become gray 
+    //calculate the total 
+    
+    let total_cost = 0; 
+    const checked = e.target.checked; 
+    const name = e.target.name; 
+    if(checked){
+       const time = getTimeFromClickedEvent(e); 
+       for(let i= 0; i < event_collection; i+=1) {
+           if(time===event_collection[i].time && name!== event_collection[i].name){
+               checkboxes.getElementsByName(event_collection[i].name)[0].setAttribute('disabled', true); 
+               checkboxes.getElementsByName(event_collection[i].name)[0].parentNode.className = 'gray'; 
+           }
+       }
+       const cost = getCost(name);
+       total_cost = total_cost + parseInt(cost);
+       total.innerHTML = `Total: $${total_cost}`; 
+       total.style.display = 'block'; 
+    } 
+    
+});
 
 
+function getTimeFromClickedEvent(e){
+    for(let i=0; i < event_collection; i+=1) {
+        if(e.target.name === event_collection[i].name){
+            const time = event_collection[i].time;
+        }
+    }
+    return time; 
+}
 
+function getCost(name){
+    for(let i=0; i< event_collection; i+=1){
+        if(name === event_collection[i].name){
+            const cost = event_collection[i].cost; 
+        }
+    }
+    return cost; 
+}
+
+
+//Payment Selection 
+//1. set the credit card option in default 
+const credit_card = document.getElementById('credit-card'); 
+credit_card.setAttribute('selected',"selected"); 
+const payment = document.getElementsByTagName('fieldset')[3]; 
+const payment_options = payment.getElementsByTagName('div'); 
+payment_options[4].style.display = 'none'; 
+payment_options[5].style.display = 'none'; 
+
+//2. show the payment option based on the payment type
+const payment_optionmenu = document.getElementById('payment'); 
+payment_optionmenu.addEventListener('select', (e)=>{
+    let option = e.target; 
+    if(option.textContent==='Select Payment Method'||'Credit Card'){
+        credit_card.style.display = 'block'; 
+        payment_options[4].style.display = 'none'; 
+        payment_options[5].style.display = 'none'; 
+    } else if(option.textContent === 'PayPal'){
+        credit_card.style.display = 'none'; 
+        payment_options[4].style.display = 'block'; 
+        payment_options[5].style.display = 'none'; 
+    } else if(option.textContent === 'Bitcoin'){
+        credit_card.style.display = 'none'; 
+        payment_options[4].style.display = 'none'; 
+        payment_options[5].style.display = 'block'; 
+    }
+}); 
 
 
 //event selection: if there is one event checked that conflicted with another, disable the latter event checkbox

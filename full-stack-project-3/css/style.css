@@ -152,6 +152,10 @@ button:hover {
     display:block; 
 }
 
+.disabled {
+    color: gray; 
+}
+
 /* ================================= 
   Media Queries
 ==================================== */
