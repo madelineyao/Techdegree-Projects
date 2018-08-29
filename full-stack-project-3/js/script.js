@@ -22,6 +22,12 @@ options.addEventListener('click',(e)=>{
 //color selection based on the theme
 const theme_selection = document.getElementById('design'); 
 const color_menu = document.getElementById('color'); 
+const cornflowerblue = document.querySelector("[value='cornflowerblue']");
+const darkslategrey = document.querySelector("[value='darkslategrey']"); 
+const gold = document.querySelector("[value='gold']"); 
+const tomato = document.querySelector("[value='tomato']"); 
+const steelblue = document.querySelector("[value='steelblue']"); 
+const dimgrey = document.querySelector("[value='dimgrey']"); 
 
 theme_selection.addEventListener('click', (e)=>{
     
@@ -30,13 +36,14 @@ theme_selection.addEventListener('click', (e)=>{
         color_menu.innerHTML = '<select id="color"><option value="cornflowerblue">Cornflower Blue (JS Puns shirt only)</option>'+
             '<option value="darkslategrey">Dark Slate Grey (JS Puns shirt only)</option>'+ 
             '<option value="gold">Gold (JS Puns shirt only)</option></select>'; 
-        color_menu.style.display = 'block'; 
+        //color_menu.style.display = 'block'; 
     } else if(e.target.textContent === 'Theme - I &#9829; JS'){
         color_menu.innerHTML = '<select id="color"><option value="tomato">Tomato (I &#9829; JS shirt only)</option>'+
             '<option value="steelblue">Steel Blue (I &#9829; JS shirt only)</option>'+ 
             '<option value="dimgrey">Dim Grey (I &#9829; JS shirt only)</option></select>'; 
-        color_menu.style.display = 'block'; 
+        //color_menu.style.display = 'block'; 
     }
+    
     
 }); 
 
