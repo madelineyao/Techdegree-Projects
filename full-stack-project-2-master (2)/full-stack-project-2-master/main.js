@@ -21,45 +21,44 @@
 //                        no result ---> print the message 
 //                        results ---> create buttons ---> use showeachpageinfo to display information 
 
+/*
+   pagination: 
+   1. locate the people 
+   2. hide everything 
+   3. show the first 10 items 
+   3. create buttons 
+   4. create functions that display the people in that page 
+   5. event handler that makes it happen
 
-const people = document.getElementsByClassName('student-item'); 
-const pages = getNumberOfPages(people); 
-const webpage = document.getElementsByClassName('page'); 
-const page_header = document.getElementsByClassName('page-header'); 
+*/
 
-//const buttons = document.createElement('div');
-//buttons.className = 'pagination'; 
-//const button_list = document.createElement('ul'); 
+/*
+   search for certain people: 
+   1. create the search bar and the input box 
+   2. if the input is not null, then run the search on the name and the email and display related results 
 
 
+*/ 
+ 
+const people = document.getElementsByTagName('ul'); 
+const page = document.getElementsByClassName('page')[0]; 
+const people_list = people.getElementsByClassName('cf'); 
+hideAll(people); 
+for(let i=0; i <10; i+=1){
+    people_list[i].style.display = 'block'; 
+}
 
-
-
-//buttons.appendChild(button_list); 
-//for(let i=0; i<pages; i+=1){
-//    let button = document.createElement('li'); 
-//    let atag = document.createElement('a'); 
-    
-//    atag.textContent = i; 
-//    button.appendChild(atag); 
- //   button_list.appendChild(button); 
-    
-//}
-
-//webpage[0].appendChild(buttons); 
-
-//create the pagination links
-const all_buttons = createButtons(pages,'pagination', webpage[0]).querySelectorAll('.pagination li'); 
-showFirstPage(people); 
-
-//
-for(let i = 0; i < all_buttons.length; i+=1 ){
-    all_buttons[i].addEventListener('click', ()=>{
-        showEachPageInfo(all_buttons[i].textContent, people); 
+const all_buttons = createButtons(people_list); 
+page.insertBefore(people, all_buttons); 
+const buttons = all_buttons.getElementsByClassName('button'); 
+for(let i = 0; i <buttons.length; i+=1 ){
+    buttons[i].addEventListener('click', ()=>{
+        showEachPageInfo(buttons[i].textContent, people_list); 
     }); 
 }
 
 //create a search button 
+/*
 const search_button = document.createElement('div');
 search_button.className = 'student-search'; 
 const input = document.createElement('input'); 
@@ -71,8 +70,11 @@ search_button.appendChild(button_for_search);
 page_header[0].appendChild(search_button); 
 
 let value = document.querySelector(".student-search input").value; 
-let people_list = document.createElement('ul'); 
-let people = people_list.children; 
+let people_list = document.createElement('ul');
+*/ 
+
+//let people = people_list.children; 
+/*
 button_for_search.addEventListener('click', ()=>{
     hideAll(people); 
     
@@ -112,6 +114,7 @@ button_for_search.addEventListener('click', ()=>{
     }
     
 }); 
+*/ 
 
 
 
@@ -127,33 +130,26 @@ function showEachPageInfo(page, list){
     }
 }
 
-
-function showFirstPage(list){
-    hideAll(list); 
-
-    for(let i = 0; i< 10; i+=1){
-        list[i].style.display = 'block'; 
-    }
-}
-
-function createButtons(page, className, location){
-   
-    let buttons = document.createElement('div');
-    buttons.className = className; 
-    let button_list = document.createElement('ul');
  
-    for(let i=0; i<page; i+=1){
-        let button = document.createElement('li'); 
-        let atag = document.createElement('a'); 
 
-        atag.textContent = i+1; 
-        button.appendChild(atag); 
-        button_list.appendChild(button); 
-
+function createButtons(list){
+   
+    let a = list.length; 
+    let b = 0; 
+    if(a%10 ==0){
+      b = (a- a%10)/10; 
+    } else {
+       b = (a - a%10) /10 +1; 
     }
-    buttons.appendChild(button_list); 
-    location.appendChild(buttons);
-    return button_list; 
+    let all_buttons = document.createElment('div'); 
+    for(let i =0; i < b; i+=1){
+        let button = document.createElement('button'); 
+        button.value = i+1; 
+        button.className = 'button'; 
+        all_buttons.appendChild(button); 
+    }
+    return all_buttons; 
+    
 }
 
 
@@ -164,15 +160,7 @@ function createButtons(page, className, location){
 
 
 
-function getNumberOfPages(lists){
-    let num = lists.length; 
-    let page = 0; 
-    do{
-      num = num - 10; 
-      page +=1; 
-    }while(num>0)
-    return page; 
-}
+ 
 
 function hideAll(list){
     for(let i = 0; i < list.length; i+=1){
