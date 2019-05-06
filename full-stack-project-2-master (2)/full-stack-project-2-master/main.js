@@ -22,10 +22,10 @@
 //                        results ---> create buttons ---> use showeachpageinfo to display information 
 
 
-const people = document.getElementsByClassName("student-item"); 
+const people = document.getElementsByClassName('student-item'); 
 const pages = getNumberOfPages(people); 
-const webpage = document.getElementsByClassName("page"); 
-const page_header = document.getElementsByClassName("page-header"); 
+const webpage = document.getElementsByClassName('page'); 
+const page_header = document.getElementsByClassName('page-header'); 
 
 //const buttons = document.createElement('div');
 //buttons.className = 'pagination'; 
@@ -49,7 +49,7 @@ const page_header = document.getElementsByClassName("page-header");
 //webpage[0].appendChild(buttons); 
 
 //create the pagination links
-const all_buttons = createButtons(pages,"pagination", webpage[0]).querySelectorAll('.pagination li'); 
+const all_buttons = createButtons(pages,'pagination', webpage[0]).querySelectorAll('.pagination li'); 
 showFirstPage(people); 
 
 //
@@ -70,7 +70,7 @@ search_button.appendChild(input);
 search_button.appendChild(button_for_search);
 page_header[0].appendChild(search_button); 
 
-let value = document.querySelector('.student-search input').textContent; 
+let value = document.querySelector('.student-search input').value; 
 let people_list = document.createElement('ul'); 
 button_for_search.addEventListener('click', ()=>{
     hideAll(people); 
@@ -87,12 +87,11 @@ button_for_search.addEventListener('click', ()=>{
         }
     }
     
-    
     if(people_list.length === 0){
         hideAll(all_buttons); 
         let statement_cover = document.createElement('div'); 
         let statement = document.createElement('p'); 
-        statement.textContent = "Sorry we cannot find anything in our record that matches your keyword search";
+        statement.value = "Sorry we cannot find anything in our record that matches your keyword search";
         statement_cover.appendChild(statement); 
         webpage.insertBefore(statement_cover, people); 
         statement.style.display = 'block'; 
