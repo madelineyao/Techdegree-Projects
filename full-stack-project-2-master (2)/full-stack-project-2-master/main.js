@@ -61,17 +61,18 @@ for(let i = 0; i < all_buttons.length; i+=1 ){
 
 //create a search button 
 const search_button = document.createElement('div');
-search_button.className = "student-search"; 
+search_button.className = 'student-search'; 
 const input = document.createElement('input'); 
 input.placeholder = "Search for students..."; 
 const button_for_search = document.createElement('button'); 
-button_for_search.textContent = "Search"; 
+button_for_search.innerHTML = "Search"; 
 search_button.appendChild(input); 
 search_button.appendChild(button_for_search);
 page_header[0].appendChild(search_button); 
 
-let value = document.querySelector('.student-search input').value; 
+let value = document.querySelector(".student-search input").value; 
 let people_list = document.createElement('ul'); 
+let people = people_list.children; 
 button_for_search.addEventListener('click', ()=>{
     hideAll(people); 
     
